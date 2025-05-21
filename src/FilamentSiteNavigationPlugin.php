@@ -6,6 +6,7 @@ namespace RectitudeOpen\FilamentSiteNavigation;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use RectitudeOpen\FilamentSiteNavigation\Pages\SiteNavigation;
 
 class FilamentSiteNavigationPlugin implements Plugin
 {
@@ -16,7 +17,10 @@ class FilamentSiteNavigationPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        //
+        $panel
+            ->pages([
+                config('filament-site-navigation.filament_page', SiteNavigation::class),
+            ]);
     }
 
     public function boot(Panel $panel): void

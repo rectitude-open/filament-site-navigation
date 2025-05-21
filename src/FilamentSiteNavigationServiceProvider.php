@@ -32,7 +32,7 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package->name(static::$name)
-            ->hasCommands($this->getCommands())
+            // ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
@@ -65,27 +65,27 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         // Asset Registration
-        FilamentAsset::register(
-            $this->getAssets(),
-            $this->getAssetPackageName()
-        );
+        // FilamentAsset::register(
+        //     $this->getAssets(),
+        //     $this->getAssetPackageName()
+        // );
 
-        FilamentAsset::registerScriptData(
-            $this->getScriptData(),
-            $this->getAssetPackageName()
-        );
+        // FilamentAsset::registerScriptData(
+        //     $this->getScriptData(),
+        //     $this->getAssetPackageName()
+        // );
 
         // Icon Registration
-        FilamentIcon::register($this->getIcons());
+        // FilamentIcon::register($this->getIcons());
 
-        // Handle Stubs
-        if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
-                $this->publishes([
-                    $file->getRealPath() => base_path("stubs/filament-site-navigation/{$file->getFilename()}"),
-                ], 'filament-site-navigation-stubs');
-            }
-        }
+        // // Handle Stubs
+        // if (app()->runningInConsole()) {
+        //     foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
+        //         $this->publishes([
+        //             $file->getRealPath() => base_path("stubs/filament-site-navigation/{$file->getFilename()}"),
+        //         ], 'filament-site-navigation-stubs');
+        //     }
+        // }
 
         // Testing
         Testable::mixin(new TestsFilamentSiteNavigation);
@@ -103,8 +103,8 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('filament-site-navigation', __DIR__ . '/../resources/dist/components/filament-site-navigation.js'),
-            Css::make('filament-site-navigation-styles', __DIR__ . '/../resources/dist/filament-site-navigation.css'),
-            Js::make('filament-site-navigation-scripts', __DIR__ . '/../resources/dist/filament-site-navigation.js'),
+            // Css::make('filament-site-navigation-styles', __DIR__ . '/../resources/dist/filament-site-navigation.css'),
+            // Js::make('filament-site-navigation-scripts', __DIR__ . '/../resources/dist/filament-site-navigation.js'),
         ];
     }
 
@@ -148,7 +148,7 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-site-navigation_table',
+            'create_site_navigations_table',
         ];
     }
 }

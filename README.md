@@ -13,7 +13,7 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 Resource | Page | Cluster | Migration | Model | Config | View | Localization
 --- | --- | --- | --- | --- | --- | --- | ---
-✅ | ❌| ❌ | ✅ | ✅ | ✅ | ❌ | ✅  
+❌ | ✅| ❌ | ✅ | ✅ | ✅ | ❌ | ✅  
 
 ## Installation
 
