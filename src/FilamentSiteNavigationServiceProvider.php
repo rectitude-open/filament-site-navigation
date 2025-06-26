@@ -13,6 +13,7 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
 use RectitudeOpen\FilamentSiteNavigation\Commands\FilamentSiteNavigationCommand;
+use RectitudeOpen\FilamentSiteNavigation\Commands\GenerateNavigationRoutes;
 use RectitudeOpen\FilamentSiteNavigation\Testing\TestsFilamentSiteNavigation;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -32,13 +33,12 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package->name(static::$name)
-            // ->hasCommands($this->getCommands())
+            ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
                     ->publishMigrations()
-                    ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('rectitude-open/filament-site-navigation');
+                    ->askToRunMigrations();
             });
 
         $configFileName = $package->shortName();
@@ -88,7 +88,7 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
         // }
 
         // Testing
-        Testable::mixin(new TestsFilamentSiteNavigation);
+        // Testable::mixin(new TestsFilamentSiteNavigation);
     }
 
     protected function getAssetPackageName(): ?string
@@ -114,7 +114,8 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            FilamentSiteNavigationCommand::class,
+            // FilamentSiteNavigationCommand::class,
+            GenerateNavigationRoutes::class,
         ];
     }
 

@@ -6,6 +6,8 @@ namespace RectitudeOpen\FilamentSiteNavigation\Pages;
 
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Contracts\Support\Htmlable;
@@ -63,8 +65,9 @@ class SiteNavigation extends TreePage
                 ->columnSpanFull(),
             TextInput::make('path')
                 ->label(__('Path'))
+                ->required()
                 ->maxLength(255)
-                ->dehydrateStateUsing(fn ($state) => $state ? $state : '')
+                ->unique(ignoreRecord: true)
                 ->columnSpanFull(),
             ToggleButtons::make('is_active')
                 ->options([
@@ -81,6 +84,29 @@ class SiteNavigation extends TreePage
                     0 => 'heroicon-o-x-circle',
                 ])
                 ->inline(),
+            Section::make('Route Configuration')
+                ->label(__('Route Configuration'))
+                ->compact()
+                ->schema([
+                    TextInput::make('controller_action')
+                        ->label(__('Controller Action'))
+                        ->placeholder('App\Http\Controllers\PageController@show')
+                        ->columnSpanFull(),
+                    KeyValue::make('route_parameters')
+                        ->label('Route Parameters')
+                        ->keyLabel('Parameter Name')
+                        ->valueLabel('Parameter Value')
+                        ->reorderable(),
+                    TextInput::make('child_route_pattern')
+                        ->label(__('Child Route Pattern'))
+                        ->placeholder('/{news:slug}')
+                        ->columnSpanFull(),
+                    TextInput::make('child_controller_action')
+                        ->label(__('Child Controller Action'))
+                        ->placeholder('App\Http\Controllers\NewsController@show')
+                        ->columnSpanFull(),
+                ])
+                ->collapsed(),
         ];
     }
 
