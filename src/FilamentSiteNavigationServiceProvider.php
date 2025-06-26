@@ -10,10 +10,14 @@ use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
 use RectitudeOpen\FilamentSiteNavigation\Commands\FilamentSiteNavigationCommand;
 use RectitudeOpen\FilamentSiteNavigation\Commands\GenerateNavigationRoutes;
+use RectitudeOpen\FilamentSiteNavigation\Listeners\RegenerateNavigationRoutes;
+use RectitudeOpen\FilamentSiteNavigation\Models\SiteNavigation as SiteNavigationModel;
+use RectitudeOpen\FilamentSiteNavigation\Observers\SiteNavigationObserver;
 use RectitudeOpen\FilamentSiteNavigation\Testing\TestsFilamentSiteNavigation;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -64,6 +68,13 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        SiteNavigationModel::observe(SiteNavigationObserver::class);
+
+        $this->app->terminating(function () {
+            $this->app[Dispatcher::class]->dispatch('filament-site-navigation.terminating');
+        });
+        $this->app['events']->listen('filament-site-navigation.terminating', RegenerateNavigationRoutes::class);
+
         // Asset Registration
         // FilamentAsset::register(
         //     $this->getAssets(),
