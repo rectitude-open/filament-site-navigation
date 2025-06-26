@@ -92,7 +92,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Rectitude Open](https://github.com/rectitude-open)
+- [Aspirant Zhang](https://github.com/aspirantzhang)
 - [All Contributors](../../contributors)
 
 ## License
