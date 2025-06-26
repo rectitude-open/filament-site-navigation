@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.0.0...v1.1.0) (2025-06-26)
+
+
+### Features
+
+* add route booting functionality to FilamentSiteNavigationServiceProvider ([4ea8287](https://github.com/rectitude-open/filament-site-navigation/commit/4ea8287f08ad4cb5615da9864f5bee86024e87f5))
+* change url to path ([cf57a7d](https://github.com/rectitude-open/filament-site-navigation/commit/cf57a7d2ac78d8fb97faaa423bee08f29128a9a6))
+* enhance site navigation model and routes configuration ([0168a1b](https://github.com/rectitude-open/filament-site-navigation/commit/0168a1bfe7faff6310c5b3b413932571a354fe20))
+* implement SiteNavigationObserver and RegenerateNavigationRoutes listener for route management ([a0f86f6](https://github.com/rectitude-open/filament-site-navigation/commit/a0f86f68fcef9e7096b20686afb0e92523dab815))
+
+
+### Miscellaneous Chores
+
+* update credits in README to reflect new contributor ([69903a1](https://github.com/rectitude-open/filament-site-navigation/commit/69903a1425ed4ec481a2a0d0294a7381c6c3707c))
+
 ## 1.0.0 (2025-05-21)
 
 
