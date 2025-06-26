@@ -12,6 +12,7 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Route;
 use Livewire\Features\SupportTesting\Testable;
 use RectitudeOpen\FilamentSiteNavigation\Commands\FilamentSiteNavigationCommand;
 use RectitudeOpen\FilamentSiteNavigation\Commands\GenerateNavigationRoutes;
@@ -68,6 +69,8 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        $this->bootRoutes();
+
         SiteNavigationModel::observe(SiteNavigationObserver::class);
 
         $this->app->terminating(function () {
@@ -100,6 +103,17 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
 
         // Testing
         // Testable::mixin(new TestsFilamentSiteNavigation);
+    }
+
+    protected function bootRoutes(): void
+    {
+        Route::middleware('web')
+            ->group(function () {
+                $generatedRoutesPath = base_path('routes/web_generated.php');
+                if (file_exists($generatedRoutesPath)) {
+                    require $generatedRoutesPath;
+                }
+            });
     }
 
     protected function getAssetPackageName(): ?string
