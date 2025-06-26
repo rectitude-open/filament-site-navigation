@@ -61,8 +61,8 @@ class SiteNavigation extends TreePage
                 ->required()
                 ->maxLength(255)
                 ->columnSpanFull(),
-            TextInput::make('url')
-                ->label(__('URL'))
+            TextInput::make('path')
+                ->label(__('Path'))
                 ->maxLength(255)
                 ->dehydrateStateUsing(fn ($state) => $state ? $state : '')
                 ->columnSpanFull(),
@@ -104,10 +104,10 @@ class SiteNavigation extends TreePage
         }
 
         $title = $record->title ?? '';
-        $url = $record->url ? ' - ' . $record->url : '';
+        $path = $record->path ? ' - ' . $record->path : '';
         $badge = $record->is_active ? '' : '[Inactive] ';
 
-        return "$badge$title$url";
+        return "$badge$title$path";
     }
 
     protected function getTreeActions(): array

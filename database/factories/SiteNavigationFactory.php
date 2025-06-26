@@ -22,7 +22,7 @@ class SiteNavigationFactory extends Factory
             'title' => $this->faker->word,
             'parent_id' => $this->faker->numberBetween(-1, 10),
             'weight' => $this->faker->numberBetween(0, 100),
-            'url' => $this->faker->url,
+            'path' => $this->faker->url(),
             'is_active' => $this->faker->boolean(80),
         ];
     }
