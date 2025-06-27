@@ -31,14 +31,14 @@ class GenerateNavigationRoutes extends Command
 
             $path = trim($nav->path, '/');
             $action = $this->formatAction($nav->controller_action);
+
             $routeLine = "Route::get('{$path}', [{$action}])->name('nav.{$nav->id}')";
-            if ($nav->route_parameters) {
-                foreach ($nav->route_parameters as $key => $value) {
-                    $escapedValue = addslashes($value);
-                    $routeLine .= "->defaults('{$key}', '{$escapedValue}')";
-                }
+            if (!empty($nav->route_parameters)) {
+                $exportedParams = var_export($nav->route_parameters, true);
+                $routeLine .= "->defaults('parameters', {$exportedParams})";
             }
             $routesBody .= $routeLine . ";\n";
+
             if ($nav->child_route_pattern && $nav->child_controller_action) {
                 $childPath = $path . '/' . trim($nav->child_route_pattern, '/');
                 $childAction = $this->formatAction($nav->child_controller_action);
