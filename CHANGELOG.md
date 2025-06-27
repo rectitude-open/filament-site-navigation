@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.1.0...v1.1.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* improve code readability by adding space in route parameters check ([53ddce0](https://github.com/rectitude-open/filament-site-navigation/commit/53ddce05cd59584c001622eb7466015dd579816d))
+* streamline route parameter handling in GenerateNavigationRoutes command ([db006e8](https://github.com/rectitude-open/filament-site-navigation/commit/db006e87d862aa1463843cee6816fef48a674834))
+
 ## [1.1.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.0.0...v1.1.0) (2025-06-26)
 
 
