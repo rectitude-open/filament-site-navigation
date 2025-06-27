@@ -33,7 +33,7 @@ class GenerateNavigationRoutes extends Command
             $action = $this->formatAction($nav->controller_action);
 
             $routeLine = "Route::get('{$path}', [{$action}])->name('nav.{$nav->id}')";
-            if (!empty($nav->route_parameters)) {
+            if (! empty($nav->route_parameters)) {
                 $exportedParams = var_export($nav->route_parameters, true);
                 $routeLine .= "->defaults('parameters', {$exportedParams})";
             }
