@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.1.1...v1.2.0) (2025-06-29)
+
+
+### Features
+
+* introduce child_routes instead of child_controller_action ([eebbac6](https://github.com/rectitude-open/filament-site-navigation/commit/eebbac6bb44d4b7fe80721037111ab07c7fa08b2))
+
+
+### Bug Fixes
+
+* enhance route name generation for navigation entries ([fe56443](https://github.com/rectitude-open/filament-site-navigation/commit/fe5644326c28364c680834cc26a584a051409a5a))
+
 ## [1.1.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.1.0...v1.1.1) (2025-06-27)
 
 
