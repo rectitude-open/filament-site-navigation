@@ -97,14 +97,10 @@ class SiteNavigation extends TreePage
                         ->keyLabel('Parameter Name')
                         ->valueLabel('Parameter Value')
                         ->reorderable(),
-                    TextInput::make('child_route_pattern')
-                        ->label(__('Child Route Pattern'))
-                        ->placeholder('/{news:slug}')
-                        ->columnSpanFull(),
-                    TextInput::make('child_controller_action')
-                        ->label(__('Child Controller Action'))
-                        ->placeholder('App\Http\Controllers\NewsController@show')
-                        ->columnSpanFull(),
+                    KeyValue::make('child_routes')
+                        ->label('Child Routes')
+                        ->keyLabel('Route Pattern')
+                        ->valueLabel('Controller Action'),
                 ])
                 ->collapsed(),
         ];
@@ -129,11 +125,12 @@ class SiteNavigation extends TreePage
             return '';
         }
 
+        $id = $record->id ? " [ID: {$record->id}]" : '';
         $title = $record->title ?? '';
         $path = $record->path ? ' - ' . $record->path : '';
-        $badge = $record->is_active ? '' : '[Inactive] ';
+        $badge = $record->is_active ? '' : '(Inactive) ';
 
-        return "$badge$title$path";
+        return "$id $title$path $badge";
     }
 
     protected function getTreeActions(): array

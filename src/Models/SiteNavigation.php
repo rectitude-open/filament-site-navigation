@@ -26,7 +26,8 @@ class SiteNavigation extends Model
 
     protected $casts = [
         'route_parameters' => 'array',
+        'child_routes' => 'array',
     ];
 
-    protected $fillable = ['title', 'path', 'is_active', 'parent_id', 'weight', 'controller_action', 'route_parameters', 'child_route_pattern', 'child_controller_action'];
+    protected $fillable = ['title', 'path', 'is_active', 'parent_id', 'weight', 'controller_action', 'route_parameters', 'child_routes'];
 }
