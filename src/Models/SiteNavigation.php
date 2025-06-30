@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RectitudeOpen\FilamentSiteNavigation\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use SolutionForest\FilamentTree\Concern\ModelTree;
@@ -30,4 +31,25 @@ class SiteNavigation extends Model
     ];
 
     protected $fillable = ['title', 'path', 'is_active', 'parent_id', 'weight', 'controller_action', 'route_parameters', 'child_routes'];
+
+    // @phpstan-ignore-next-line
+    #[Scope]
+    public function active(Builder $query): void
+    {
+        $query->where('is_active', 1);
+    }
+
+    // @phpstan-ignore-next-line
+    #[Scope]
+    public function inactive(Builder $query): void
+    {
+        $query->where('is_active', 0);
+    }
+
+    // @phpstan-ignore-next-line
+    #[Scope]
+    public function ordered(Builder $query): void
+    {
+        $query->orderBy('weight', 'desc')->orderBy('id', 'asc');
+    }
 }
