@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.0...v1.3.1) (2025-06-30)
+
+
+### Bug Fixes
+
+* add missing import for Scope attribute in SiteNavigation model ([2895469](https://github.com/rectitude-open/filament-site-navigation/commit/2895469c59eecf4f5254bfe737348f573c167d78))
+
 ## [1.3.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.2.0...v1.3.0) (2025-06-30)
 
 
