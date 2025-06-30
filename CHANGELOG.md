@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.1...v1.3.2) (2025-06-30)
+
+
+### Bug Fixes
+
+* change visibility of query scope methods to protected in SiteNavigation model ([beb88d1](https://github.com/rectitude-open/filament-site-navigation/commit/beb88d14acd97686780f7871a465ffff5fcc0f93))
+
 ## [1.3.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.0...v1.3.1) (2025-06-30)
 
 
