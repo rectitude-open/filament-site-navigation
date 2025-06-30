@@ -35,21 +35,21 @@ class SiteNavigation extends Model
 
     // @phpstan-ignore-next-line
     #[Scope]
-    public function active(Builder $query): void
+    protected function active(Builder $query): void
     {
         $query->where('is_active', 1);
     }
 
     // @phpstan-ignore-next-line
     #[Scope]
-    public function inactive(Builder $query): void
+    protected function inactive(Builder $query): void
     {
         $query->where('is_active', 0);
     }
 
     // @phpstan-ignore-next-line
     #[Scope]
-    public function ordered(Builder $query): void
+    protected function ordered(Builder $query): void
     {
         $query->orderBy('weight', 'desc')->orderBy('id', 'asc');
     }
