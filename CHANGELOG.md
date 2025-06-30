@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.2.0...v1.3.0) (2025-06-30)
+
+
+### Features
+
+* add GeneratesBreadcrumbs trait for breadcrumb generation functionality ([7b0e6c3](https://github.com/rectitude-open/filament-site-navigation/commit/7b0e6c330f48d48110b8df147b43fb4d30fd240c))
+* add query scopes for active, inactive, and ordered navigation entries ([af7f585](https://github.com/rectitude-open/filament-site-navigation/commit/af7f5852962bcdcef98b19da706375b088171ff7))
+* implement getModel method to retrieve the configured model for SiteNavigation ([d425e71](https://github.com/rectitude-open/filament-site-navigation/commit/d425e710b7fc7bbd113e31ab890c5c53694f2aa8))
+
 ## [1.2.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.1.1...v1.2.0) (2025-06-29)
 
 
