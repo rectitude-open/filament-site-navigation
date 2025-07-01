@@ -46,11 +46,4 @@ class SiteNavigation extends Model
     {
         $query->where('is_active', 0);
     }
-
-    // @phpstan-ignore-next-line
-    #[Scope]
-    protected function ordered(Builder $query): void
-    {
-        $query->orderBy('weight', 'desc')->orderBy('id', 'asc');
-    }
 }
