@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.2...v1.3.3) (2025-07-01)
+
+
+### Bug Fixes
+
+* remove ordered scope method in SiteNavigation model ([b308f6f](https://github.com/rectitude-open/filament-site-navigation/commit/b308f6f3d58dd4587095ec99fd34ae2e7a557112))
+
 ## [1.3.2](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.1...v1.3.2) (2025-06-30)
 
 
