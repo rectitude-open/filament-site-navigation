@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.0...v1.4.1) (2025-07-07)
+
+
+### Bug Fixes
+
+* update icon for toggle button to use eye-slash icon ([2c4cb6c](https://github.com/rectitude-open/filament-site-navigation/commit/2c4cb6c705b5644049b8c01ee3a22d263bebb383))
+
 ## [1.4.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.3...v1.4.0) (2025-07-07)
 
 
