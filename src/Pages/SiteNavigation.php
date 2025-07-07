@@ -99,7 +99,7 @@ class SiteNavigation extends TreePage
                         ])
                         ->icons([
                             1 => 'heroicon-o-eye',
-                            0 => 'heroicon-o-eye-off',
+                            0 => 'heroicon-o-eye-slash',
                         ])
                         ->inline(),
                 ]),
