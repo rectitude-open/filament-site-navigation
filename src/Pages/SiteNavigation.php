@@ -6,6 +6,7 @@ namespace RectitudeOpen\FilamentSiteNavigation\Pages;
 
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -69,21 +70,39 @@ class SiteNavigation extends TreePage
                 ->maxLength(255)
                 ->unique(ignoreRecord: true)
                 ->columnSpanFull(),
-            ToggleButtons::make('is_active')
-                ->options([
-                    1 => 'Active',
-                    0 => 'Inactive',
-                ])
-                ->default(1)
-                ->colors([
-                    1 => 'success',
-                    0 => 'warning',
-                ])
-                ->icons([
-                    1 => 'heroicon-o-check-circle',
-                    0 => 'heroicon-o-x-circle',
-                ])
-                ->inline(),
+            Grid::make(['sm' => 2])
+                ->schema([
+                    ToggleButtons::make('is_active')
+                        ->options([
+                            1 => 'Active',
+                            0 => 'Inactive',
+                        ])
+                        ->default(1)
+                        ->colors([
+                            1 => 'success',
+                            0 => 'warning',
+                        ])
+                        ->icons([
+                            1 => 'heroicon-o-check-circle',
+                            0 => 'heroicon-o-x-circle',
+                        ])
+                        ->inline(),
+                    ToggleButtons::make('is_visible')
+                        ->options([
+                            1 => 'Visible',
+                            0 => 'Hidden',
+                        ])
+                        ->default(1)
+                        ->colors([
+                            1 => 'success',
+                            0 => 'warning',
+                        ])
+                        ->icons([
+                            1 => 'heroicon-o-eye',
+                            0 => 'heroicon-o-eye-off',
+                        ])
+                        ->inline(),
+                ]),
             Section::make('Route Configuration')
                 ->label(__('Route Configuration'))
                 ->compact()
@@ -128,9 +147,10 @@ class SiteNavigation extends TreePage
         $id = $record->id ? " [ID: {$record->id}]" : '';
         $title = $record->title ?? '';
         $path = $record->path ? ' - ' . $record->path : '';
-        $badge = $record->is_active ? '' : '(Inactive) ';
+        $activeIcon = $record->is_active ? '' : '🚫';
+        $visibleIcon = $record->is_visible ? '' : '🔇';
 
-        return "$id $title$path $badge";
+        return "$id $title$path $activeIcon$visibleIcon";
     }
 
     protected function getTreeActions(): array

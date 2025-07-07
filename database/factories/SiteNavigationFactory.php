@@ -28,6 +28,7 @@ class SiteNavigationFactory extends Factory
             'child_route_pattern' => $this->faker->optional()->word(),
             'child_controller_action' => $this->faker->optional()->word(),
             'is_active' => $this->faker->boolean(80),
+            'is_visible' => $this->faker->boolean(80),
         ];
     }
 }
