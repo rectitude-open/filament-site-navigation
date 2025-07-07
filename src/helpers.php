@@ -12,6 +12,16 @@ if (! function_exists('is_current_nav')) {
             return true;
         }
 
+        if (!empty($item->child_routes)) {
+            foreach (array_keys($item->child_routes) as $routePattern) {
+                $fullPattern = rtrim($path, '/') . '/' . ltrim($routePattern, '/');
+                $wildcardPattern = preg_replace('/\{[^\}]+\}/', '*', $fullPattern);
+                if (request()->is(ltrim($wildcardPattern, '/'))) {
+                    return true;
+                }
+            }
+        }
+
         if ($item->children->isNotEmpty()) {
             foreach ($item->children as $child) {
                 if (is_current_nav($child)) {
@@ -19,7 +29,6 @@ if (! function_exists('is_current_nav')) {
                 }
             }
         }
-
         return false;
     }
 }
