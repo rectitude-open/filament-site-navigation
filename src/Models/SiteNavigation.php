@@ -21,6 +21,11 @@ use SolutionForest\FilamentTree\Concern\ModelTree;
  * @property int $is_visible
  * @property int $parent_id
  * @property int $weight
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|static active()
+ * @method static \Illuminate\Database\Eloquent\Builder|static inactive()
+ * @method static \Illuminate\Database\Eloquent\Builder|static visible()
+ * @method static \Illuminate\Database\Eloquent\Builder|static hidden()
  */
 class SiteNavigation extends Model
 {

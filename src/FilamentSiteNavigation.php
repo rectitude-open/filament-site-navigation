@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace RectitudeOpen\FilamentSiteNavigation;
 
-use Illuminate\Database\Eloquent\Model;
 use RectitudeOpen\FilamentSiteNavigation\Models\SiteNavigation;
 
 class FilamentSiteNavigation
 {
     /**
-     * @return class-string<Model>
+     * @return class-string<SiteNavigation>
      */
     public function getModel(): string
     {
