@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.3...v1.4.0) (2025-07-07)
+
+
+### Features
+
+* add is_current_nav helper function ([a572d01](https://github.com/rectitude-open/filament-site-navigation/commit/a572d010a16106c0ec48b62a8152a0c257d3c996))
+* add is_visible field ([6319123](https://github.com/rectitude-open/filament-site-navigation/commit/63191239aa6ced3d818f6f56c31a3feb96ecd90f))
+* add view composer for navigation tree ([84d2bfd](https://github.com/rectitude-open/filament-site-navigation/commit/84d2bfdfbe1215ba40fa8f5531dbba6b469575e2))
+
+
+### Bug Fixes
+
+* update return type in getModel method to use SiteNavigation class ([86ff0b0](https://github.com/rectitude-open/filament-site-navigation/commit/86ff0b07174659fa966678be10f2d393049dd9f8))
+
 ## [1.3.3](https://github.com/rectitude-open/filament-site-navigation/compare/v1.3.2...v1.3.3) (2025-07-01)
 
 
