@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.4](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.3...v1.4.4) (2025-07-07)
+
+
+### Bug Fixes
+
+* enhance is_current_nav function to check child routes ([67965d4](https://github.com/rectitude-open/filament-site-navigation/commit/67965d4a5a0f0e6191c815021a0f6fbeed68d8b5))
+
+
+### Miscellaneous Chores
+
+* clean up code using pint ([5f0c44b](https://github.com/rectitude-open/filament-site-navigation/commit/5f0c44ba877c78a0b2a01014f11946af2ff4bc56))
+
 ## [1.4.3](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.2...v1.4.3) (2025-07-07)
 
 
