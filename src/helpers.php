@@ -12,7 +12,7 @@ if (! function_exists('is_current_nav')) {
             return true;
         }
 
-        if (!empty($item->child_routes)) {
+        if (! empty($item->child_routes)) {
             foreach (array_keys($item->child_routes) as $routePattern) {
                 $fullPattern = rtrim($path, '/') . '/' . ltrim($routePattern, '/');
                 $wildcardPattern = preg_replace('/\{[^\}]+\}/', '*', $fullPattern);
@@ -29,6 +29,7 @@ if (! function_exists('is_current_nav')) {
                 }
             }
         }
+
         return false;
     }
 }
