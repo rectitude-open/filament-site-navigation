@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.1...v1.4.2) (2025-07-07)
+
+
+### Bug Fixes
+
+* add helpers to autoload ([c3c85db](https://github.com/rectitude-open/filament-site-navigation/commit/c3c85db441ed106d922f0bc64a648bef63e618d6))
+
 ## [1.4.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.0...v1.4.1) (2025-07-07)
 
 
