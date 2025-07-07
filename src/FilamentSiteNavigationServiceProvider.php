@@ -80,7 +80,7 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
         $this->app['events']->listen('filament-site-navigation.terminating', RegenerateNavigationRoutes::class);
 
         View::composer('*', function ($view) {
-            $navigations = app(FilamentSiteNavigation::class)->getModel()::visible()->ordered()->get();
+            $navigations = app(FilamentSiteNavigation::class)->getModel()::active()->visible()->ordered()->get();
 
             $buildTree = function ($elements, $parentId = -1) use (&$buildTree) {
                 $branch = collect();
