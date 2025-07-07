@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.3](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.2...v1.4.3) (2025-07-07)
+
+
+### Bug Fixes
+
+* update navigation query to use active status ([19ec61b](https://github.com/rectitude-open/filament-site-navigation/commit/19ec61b5520c5d25085b9df96dc297d9a584414d))
+
 ## [1.4.2](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.1...v1.4.2) (2025-07-07)
 
 
