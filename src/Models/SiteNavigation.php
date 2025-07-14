@@ -6,6 +6,7 @@ namespace RectitudeOpen\FilamentSiteNavigation\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use SolutionForest\FilamentTree\Concern\ModelTree;
@@ -13,6 +14,7 @@ use SolutionForest\FilamentTree\Concern\ModelTree;
 /**
  * @property string $title
  * @property string $path
+ * @property string $url
  * @property string $controller_action
  * @property array $route_parameters
  * @property string $child_route_pattern
@@ -38,6 +40,38 @@ class SiteNavigation extends Model
     ];
 
     protected $fillable = ['title', 'path', 'is_active', 'is_visible', 'parent_id', 'weight', 'controller_action', 'route_parameters', 'child_routes'];
+
+    protected $appends = ['url'];
+
+    protected function url(): Attribute
+    {
+        return Attribute::make(
+            get: function (): string {
+                if (empty($this->path)) {
+                    return '';
+                }
+
+                if ($this->path === '#first-child') {
+                    $firstChild = $this->children()->ordered()->first();
+                    if ($firstChild) {
+                        return $firstChild->url;
+                    }
+
+                    return '';
+                }
+
+                if (filter_var($this->path, FILTER_VALIDATE_URL)) {
+                    return $this->path;
+                }
+
+                if (str_starts_with($this->path, '/')) {
+                    return url($this->path);
+                }
+
+                return url('/' . ltrim($this->path, '/'));
+            }
+        );
+    }
 
     // @phpstan-ignore-next-line
     #[Scope]
