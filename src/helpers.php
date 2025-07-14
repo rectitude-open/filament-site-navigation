@@ -2,7 +2,19 @@
 
 declare(strict_types=1);
 
+use Illuminate\Database\Eloquent\Collection;
+use RectitudeOpen\FilamentSiteNavigation\FilamentSiteNavigation;
 use RectitudeOpen\FilamentSiteNavigation\Models\SiteNavigation;
+
+if (! function_exists('site_navigations')) {
+    /**
+     * @return Collection<int, SiteNavigation>
+     */
+    function site_navigations(int $parentId = -1, bool $withHidden = false): Collection
+    {
+        return app(FilamentSiteNavigation::class)->getTreeByParentId($parentId, $withHidden);
+    }
+}
 
 if (! function_exists('is_current_nav')) {
     function is_current_nav(SiteNavigation $item): bool
