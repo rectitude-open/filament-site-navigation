@@ -13,7 +13,6 @@ use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use Livewire\Features\SupportTesting\Testable;
 use RectitudeOpen\FilamentSiteNavigation\Commands\FilamentSiteNavigationCommand;
 use RectitudeOpen\FilamentSiteNavigation\Commands\GenerateNavigationRoutes;
@@ -78,29 +77,6 @@ class FilamentSiteNavigationServiceProvider extends PackageServiceProvider
             $this->app[Dispatcher::class]->dispatch('filament-site-navigation.terminating');
         });
         $this->app['events']->listen('filament-site-navigation.terminating', RegenerateNavigationRoutes::class);
-
-        View::composer('*', function ($view) {
-            $navigations = app(FilamentSiteNavigation::class)->getModel()::active()->visible()->ordered()->get();
-
-            $buildTree = function ($elements, $parentId = -1) use (&$buildTree) {
-                $branch = collect();
-                foreach ($elements as $element) {
-                    if ($element->parent_id == $parentId) {
-                        $children = $buildTree($elements, $element->id);
-                        if ($children->isNotEmpty()) {
-                            $element->children = $children;
-                        } else {
-                            $element->children = collect();
-                        }
-                        $branch->push($element);
-                    }
-                }
-
-                return $branch;
-            };
-            $navigationTree = $buildTree($navigations);
-            $view->with('navigationTree', $navigationTree);
-        });
 
         // Asset Registration
         // FilamentAsset::register(
