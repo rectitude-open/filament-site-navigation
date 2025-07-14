@@ -73,7 +73,7 @@ class FilamentSiteNavigation
         $modelClass = $this->getModel();
 
         /** @var Collection<int, SiteNavigation> $allNavigations */
-        $allNavigations = $modelClass::active()->visible()->get();
+        $allNavigations = $modelClass::active()->get();
 
         $matchingNavigations = $allNavigations->filter(function (SiteNavigation $item) {
             if (empty($item->path) || $item->path === '#') {
