@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.6.0...v1.7.0) (2025-07-14)
+
+
+### Features
+
+* add parent relationship to SiteNavigation model ([7094053](https://github.com/rectitude-open/filament-site-navigation/commit/7094053b0d0b743d1d6718654f25b0c758f9ce80))
+* implement getBreadcrumbs method in FilamentSiteNavigation class and add site_breadcrumbs helper function ([fe8f9b2](https://github.com/rectitude-open/filament-site-navigation/commit/fe8f9b2b1ecc5cb8f8c757ee1a19467c9db5f60c))
+
 ## [1.6.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.5.0...v1.6.0) (2025-07-14)
 
 
