@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.4...v1.5.0) (2025-07-14)
+
+
+### Features
+
+* add getTreeByParentId method to FilamentSiteNavigation and site_navigations helper function ([10bf766](https://github.com/rectitude-open/filament-site-navigation/commit/10bf76610917ae80ff6f2a96b342b86d0d6e7d37))
+
+
+### Bug Fixes
+
+* optimize is_current_nav function to cache results for improved performance ([26dcbcd](https://github.com/rectitude-open/filament-site-navigation/commit/26dcbcd84b0ab30fc5844ef412e354ae84e5395f))
+
 ## [1.4.4](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.3...v1.4.4) (2025-07-07)
 
 
