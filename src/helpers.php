@@ -19,9 +19,14 @@ if (! function_exists('site_navigations')) {
 if (! function_exists('is_current_nav')) {
     function is_current_nav(SiteNavigation $item): bool
     {
+        static $results = [];
+        if (array_key_exists($item->id, $results)) {
+            return $results[$item->id];
+        }
+
         $path = ltrim($item->path, '/');
         if (request()->is($path ?: '/')) {
-            return true;
+            return $results[$item->id] = true;
         }
 
         if (! empty($item->child_routes)) {
@@ -29,7 +34,7 @@ if (! function_exists('is_current_nav')) {
                 $fullPattern = rtrim($path, '/') . '/' . ltrim($routePattern, '/');
                 $wildcardPattern = preg_replace('/\{[^\}]+\}/', '*', $fullPattern);
                 if (request()->is(ltrim($wildcardPattern, '/'))) {
-                    return true;
+                    return $results[$item->id] = true;
                 }
             }
         }
@@ -37,11 +42,11 @@ if (! function_exists('is_current_nav')) {
         if ($item->children->isNotEmpty()) {
             foreach ($item->children as $child) {
                 if (is_current_nav($child)) {
-                    return true;
+                    return $results[$item->id] = true;
                 }
             }
         }
 
-        return false;
+        return $results[$item->id] = false;
     }
 }
