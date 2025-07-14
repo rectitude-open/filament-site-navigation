@@ -47,7 +47,7 @@ class SiteNavigation extends TreePage
         return __('filament-site-navigation::filament-site-navigation.nav.group');
     }
 
-    protected static int $maxDepth = 3;
+    protected static int $maxDepth = 10;
 
     protected function getActions(): array
     {
@@ -68,7 +68,6 @@ class SiteNavigation extends TreePage
                 ->label(__('Path'))
                 ->required()
                 ->maxLength(255)
-                ->unique(ignoreRecord: true)
                 ->columnSpanFull(),
             Grid::make(['sm' => 2])
                 ->schema([
