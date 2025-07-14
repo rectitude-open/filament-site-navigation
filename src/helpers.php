@@ -16,6 +16,16 @@ if (! function_exists('site_navigations')) {
     }
 }
 
+if (! function_exists('site_breadcrumbs')) {
+    /**
+     * @return Collection<SiteNavigation>
+     */
+    function site_breadcrumbs(?int $rootId = null, bool $includeRoot = false): Collection
+    {
+        return app(FilamentSiteNavigation::class)->getBreadcrumbs($rootId, $includeRoot);
+    }
+}
+
 if (! function_exists('is_current_nav')) {
     function is_current_nav(SiteNavigation $item): bool
     {
