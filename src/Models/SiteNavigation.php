@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use SolutionForest\FilamentTree\Concern\ModelTree;
 
 /**
@@ -71,6 +72,11 @@ class SiteNavigation extends Model
                 return url('/' . ltrim($this->path, '/'));
             }
         );
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     // @phpstan-ignore-next-line
