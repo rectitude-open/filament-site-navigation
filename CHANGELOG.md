@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.5.0...v1.6.0) (2025-07-14)
+
+
+### Features
+
+* add url attribute to SiteNavigation model for dynamic URL generation ([b2a42d4](https://github.com/rectitude-open/filament-site-navigation/commit/b2a42d442b83898b6dad99ba861295398fdea462))
+* increase maxDepth from 3 to 10 for SiteNavigation class ([6d83cb5](https://github.com/rectitude-open/filament-site-navigation/commit/6d83cb52965b56a2e6a787c185259c5d5c9d1321))
+
 ## [1.5.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.4.4...v1.5.0) (2025-07-14)
 
 
