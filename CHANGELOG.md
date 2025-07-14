@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.7.0...v1.7.1) (2025-07-14)
+
+
+### Bug Fixes
+
+* remove visibility filter from all navigations retrieval in findCurrentNavigationItem method ([4679ed8](https://github.com/rectitude-open/filament-site-navigation/commit/4679ed88e4118948d8ea607583924abab0efbbe4))
+
 ## [1.7.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.6.0...v1.7.0) (2025-07-14)
 
 
