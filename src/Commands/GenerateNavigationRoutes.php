@@ -6,6 +6,7 @@ namespace RectitudeOpen\FilamentSiteNavigation\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpFile;
 use RectitudeOpen\FilamentSiteNavigation\Models\SiteNavigation;
 
@@ -25,36 +26,63 @@ class GenerateNavigationRoutes extends Command
         $file->addComment('Do not edit directly.');
         $file->setStrictTypes();
         $file->addUse('Illuminate\Support\Facades\Route');
-        $navigations = SiteNavigation::where('is_active', true)->get();
-        $routesBody = '';
 
+        $navigations = SiteNavigation::active()->ordered()->get();
+        $routesToProcess = [];
+
+        // Step 1: Collect all routes with priority metadata
         foreach ($navigations as $nav) {
-            if (! $nav->controller_action) {
-                continue;
-            }
-
-            $path = trim($nav->path, '/');
-            $action = $this->formatAction($nav->controller_action);
-            $routeName = $this->generateRouteName($nav->controller_action, $nav->id);
-
-            $routeLine = "Route::get('{$path}', [{$action}])->name('{$routeName}')";
-            if (! empty($nav->route_parameters)) {
-                $exportedParams = var_export($nav->route_parameters, true);
-                $routeLine .= "->defaults('parameters', {$exportedParams})";
-            }
-            $routesBody .= $routeLine . ";\n";
+            $parentPath = trim($nav->path, '/');
 
             if (! empty($nav->child_routes)) {
                 foreach ($nav->child_routes as $childPattern => $childControllerAction) {
-                    if (empty($childPattern) || empty($childControllerAction)) {
+                    if (empty($childPattern) || empty($childControllerAction) || ! str_contains($childControllerAction, '@')) {
                         continue;
                     }
-                    $childPath = $path . '/' . trim($childPattern, '/');
-                    $childAction = $this->formatAction($childControllerAction);
-                    $childRouteName = $this->generateRouteName($childControllerAction, $nav->id);
-                    $routesBody .= "Route::get('{$childPath}', [{$childAction}])->name('{$childRouteName}');\n";
+                    $isDynamic = str_contains($childPattern, '{');
+                    $routesToProcess[] = [
+                        'path' => $parentPath . '/' . trim($childPattern, '/'),
+                        'action' => $this->formatAction($childControllerAction),
+                        'routeName' => $this->generateRouteName($childControllerAction, $nav->id),
+                        'parameters' => null,
+                        'priority' => $isDynamic ? 2 : 1,
+                    ];
                 }
             }
+
+            if ($nav->controller_action && str_contains($nav->controller_action, '@')) {
+                $routesToProcess[] = [
+                    'path' => $parentPath,
+                    'action' => $this->formatAction($nav->controller_action),
+                    'routeName' => $this->generateRouteName($nav->controller_action, $nav->id),
+                    'parameters' => $nav->route_parameters,
+                    'priority' => 3,
+                ];
+            }
+        }
+
+        // Step 2: Sort the collected routes
+        usort($routesToProcess, function ($a, $b) {
+            if ($a['priority'] !== $b['priority']) {
+                return $a['priority'] <=> $b['priority'];
+            }
+
+            return strlen($b['path']) <=> strlen($a['path']);
+        });
+
+        // Step 3: Generate the route file from the sorted array
+        $dumper = new Dumper;
+        $routesBody = '';
+        foreach ($routesToProcess as $routeData) {
+            $path = addslashes($routeData['path']);
+            $routeName = addslashes($routeData['routeName']);
+
+            $routeLine = "Route::get('{$path}', [{$routeData['action']}])->name('{$routeName}')";
+            if (! empty($routeData['parameters'])) {
+                $exportedParams = $dumper->dump($routeData['parameters']);
+                $routeLine .= "->defaults('parameters', {$exportedParams})";
+            }
+            $routesBody .= $routeLine . ";\n";
         }
 
         $content = (string) $file . "\n" . $routesBody;
@@ -71,13 +99,11 @@ class GenerateNavigationRoutes extends Command
         [$class, $method] = explode('@', $controllerAction);
         $baseClassName = class_basename($class);
         $prefix = strtolower(str_replace('Controller', '', $baseClassName));
-
         $routeName = "{$prefix}.{$method}";
 
         if (in_array($routeName, $this->usedRouteNames, true)) {
             $routeName .= '.' . $navId;
         }
-
         $this->usedRouteNames[] = $routeName;
 
         return $routeName;
@@ -86,7 +112,8 @@ class GenerateNavigationRoutes extends Command
     private function formatAction(string $action): string
     {
         [$class, $method] = explode('@', $action);
+        $escapedMethod = addslashes($method);
 
-        return '\\' . $class . "::class, '{$method}'";
+        return '\\' . $class . "::class, '{$escapedMethod}'";
     }
 }
