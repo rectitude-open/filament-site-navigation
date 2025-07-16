@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.7.1...v1.8.0) (2025-07-16)
+
+
+### Features
+
+* enhance route generation logic to support child routes and prioritize routes ([cf49a2a](https://github.com/rectitude-open/filament-site-navigation/commit/cf49a2a5a3a785a12c4bd69cc970fccf6c0f6bf0))
+
+
+### Bug Fixes
+
+* remove reorderable option from route parameters key-value component ([137f07e](https://github.com/rectitude-open/filament-site-navigation/commit/137f07e9060a6e8b678539936ad04c1784fd916b))
+
 ## [1.7.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.7.0...v1.7.1) (2025-07-14)
 
 
