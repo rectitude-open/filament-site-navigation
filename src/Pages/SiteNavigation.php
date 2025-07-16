@@ -113,8 +113,7 @@ class SiteNavigation extends TreePage
                     KeyValue::make('route_parameters')
                         ->label('Route Parameters')
                         ->keyLabel('Parameter Name')
-                        ->valueLabel('Parameter Value')
-                        ->reorderable(),
+                        ->valueLabel('Parameter Value'),
                     KeyValue::make('child_routes')
                         ->label('Child Routes')
                         ->keyLabel('Route Pattern')
