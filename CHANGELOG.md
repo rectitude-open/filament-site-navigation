@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.8.0...v1.9.0) (2025-07-19)
+
+
+### Features
+
+* add duplicate action to SiteNavigation tree actions ([87a7801](https://github.com/rectitude-open/filament-site-navigation/commit/87a780170ab16a01bf29f7e8c5320a7f9edcbbed))
+* add root path handling to URL generation in SiteNavigation model ([c29a9ab](https://github.com/rectitude-open/filament-site-navigation/commit/c29a9ab9d8dbb8ae0742d9a7ca3b900b6484a678))
+
 ## [1.8.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.7.1...v1.8.0) (2025-07-16)
 
 
