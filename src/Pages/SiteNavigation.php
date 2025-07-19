@@ -14,6 +14,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use RectitudeOpen\FilamentSiteNavigation\Models\SiteNavigation as TreePageModel;
+use SolutionForest\FilamentTree\Actions\Action;
 use SolutionForest\FilamentTree\Pages\TreePage;
 
 class SiteNavigation extends TreePage
@@ -155,6 +156,17 @@ class SiteNavigation extends TreePage
     {
         return [
             $this->getEditAction(),
+            Action::make('duplicate')
+                ->hiddenLabel()
+                ->icon('heroicon-o-document-duplicate')
+                ->iconButton()
+                ->action(function ($record) {
+                    $newRecord = $record->replicate();
+                    $newRecord->created_at = now();
+                    $newRecord->updated_at = now();
+                    $newRecord->save();
+                })
+                ->requiresConfirmation(),
             $this->getDeleteAction(),
         ];
     }
