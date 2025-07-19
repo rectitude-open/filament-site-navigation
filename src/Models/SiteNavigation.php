@@ -65,6 +65,10 @@ class SiteNavigation extends Model
                     return $this->path;
                 }
 
+                if ($this->path === '/') {
+                    return config('app.url');
+                }
+
                 if (str_starts_with($this->path, '/')) {
                     return url($this->path);
                 }
