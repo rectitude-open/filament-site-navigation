@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.9.0...v1.10.0) (2025-08-09)
+
+
+### Features
+
+* add more translations ([0034908](https://github.com/rectitude-open/filament-site-navigation/commit/003490821ca435b73340e2f22e22e5804c4f8836))
+* enhance SiteNavigation form with localized labels and improved action modals ([7915710](https://github.com/rectitude-open/filament-site-navigation/commit/7915710c793490fbf20082f7f1f0d526e3661aa0))
+
 ## [1.9.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.8.0...v1.9.0) (2025-07-19)
 
 
