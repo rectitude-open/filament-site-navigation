@@ -23,6 +23,8 @@ class SiteNavigation extends TreePage
 
     protected static ?string $navigationIcon = 'heroicon-o-square-3-stack-3d';
 
+    protected static int $maxDepth = 10;
+
     public function getModel(): string
     {
         return config('filament-site-navigation.model', TreePageModel::class);
@@ -48,12 +50,18 @@ class SiteNavigation extends TreePage
         return __('filament-site-navigation::filament-site-navigation.nav.group');
     }
 
-    protected static int $maxDepth = 10;
+    public function getTitle(): string | Htmlable
+    {
+        return __('filament-site-navigation::filament-site-navigation.resource.label');
+    }
 
     protected function getActions(): array
     {
         return [
-            $this->getCreateAction()->icon('heroicon-o-plus'),
+            $this->getCreateAction()
+                ->modalHeading(fn (): string => __('filament-actions::create.single.modal.heading', ['label' => __('filament-site-navigation::filament-site-navigation.resource.label')]))
+                ->label(__('filament-site-navigation::filament-site-navigation.resource.label'))
+                ->icon('heroicon-o-plus'),
         ];
     }
 
@@ -61,21 +69,22 @@ class SiteNavigation extends TreePage
     {
         return [
             TextInput::make('title')
-                ->label(__('Title'))
+                ->label(__('filament-site-navigation::filament-site-navigation.field.title'))
                 ->required()
                 ->maxLength(255)
                 ->columnSpanFull(),
             TextInput::make('path')
-                ->label(__('Path'))
+                ->label(__('filament-site-navigation::filament-site-navigation.field.path'))
                 ->required()
                 ->maxLength(255)
                 ->columnSpanFull(),
             Grid::make(['sm' => 2])
                 ->schema([
                     ToggleButtons::make('is_active')
+                        ->label(__('filament-site-navigation::filament-site-navigation.field.active_status'))
                         ->options([
-                            1 => 'Active',
-                            0 => 'Inactive',
+                            1 => __('filament-site-navigation::filament-site-navigation.field.active_status_active'),
+                            0 => __('filament-site-navigation::filament-site-navigation.field.active_status_inactive'),
                         ])
                         ->default(1)
                         ->colors([
@@ -88,9 +97,10 @@ class SiteNavigation extends TreePage
                         ])
                         ->inline(),
                     ToggleButtons::make('is_visible')
+                        ->label(__('filament-site-navigation::filament-site-navigation.field.visibility_status'))
                         ->options([
-                            1 => 'Visible',
-                            0 => 'Hidden',
+                            1 => __('filament-site-navigation::filament-site-navigation.field.visibility_status_visible'),
+                            0 => __('filament-site-navigation::filament-site-navigation.field.visibility_status_hidden'),
                         ])
                         ->default(1)
                         ->colors([
@@ -103,22 +113,21 @@ class SiteNavigation extends TreePage
                         ])
                         ->inline(),
                 ]),
-            Section::make('Route Configuration')
-                ->label(__('Route Configuration'))
+            Section::make(__('filament-site-navigation::filament-site-navigation.info.route_configuration'))
                 ->compact()
                 ->schema([
                     TextInput::make('controller_action')
-                        ->label(__('Controller Action'))
+                        ->label(__('filament-site-navigation::filament-site-navigation.field.controller_action'))
                         ->placeholder('App\Http\Controllers\PageController@show')
                         ->columnSpanFull(),
                     KeyValue::make('route_parameters')
-                        ->label('Route Parameters')
-                        ->keyLabel('Parameter Name')
-                        ->valueLabel('Parameter Value'),
+                        ->label(__('filament-site-navigation::filament-site-navigation.field.route_parameters'))
+                        ->keyLabel(__('filament-site-navigation::filament-site-navigation.info.route_parameters_key_label'))
+                        ->valueLabel(__('filament-site-navigation::filament-site-navigation.info.route_parameters_value_label')),
                     KeyValue::make('child_routes')
-                        ->label('Child Routes')
-                        ->keyLabel('Route Pattern')
-                        ->valueLabel('Controller Action'),
+                        ->label(__('filament-site-navigation::filament-site-navigation.field.child_routes'))
+                        ->keyLabel(__('filament-site-navigation::filament-site-navigation.info.child_routes_key_label'))
+                        ->valueLabel(__('filament-site-navigation::filament-site-navigation.info.child_routes_value_label')),
                 ])
                 ->collapsed(),
         ];
