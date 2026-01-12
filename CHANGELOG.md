@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.1](https://github.com/rectitude-open/filament-site-navigation/compare/v1.10.0...v1.10.1) (2026-01-12)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 ([c0090ce](https://github.com/rectitude-open/filament-site-navigation/commit/c0090cec6ab2b9e26ef05ee9a0a5615348c44780))
+* **deps:** bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 ([f282c0e](https://github.com/rectitude-open/filament-site-navigation/commit/f282c0ed4ee0d1750f1e48b90146c645545b9911))
+
 ## [1.10.0](https://github.com/rectitude-open/filament-site-navigation/compare/v1.9.0...v1.10.0) (2025-08-09)
 
 
